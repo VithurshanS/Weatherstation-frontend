@@ -75,7 +75,7 @@ const AircraftTypeRevenueChart = () => {
 
   useEffect(() => {
     fetchWeatherData();
-    const interval = setInterval(fetchWeatherData, 10000); // Update every 2 seconds
+    const interval = setInterval(fetchWeatherData, 1000); // Update every 2 seconds
 
     return () => clearInterval(interval);
   }, []);
