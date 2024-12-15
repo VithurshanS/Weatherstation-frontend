@@ -50,7 +50,7 @@ const AircraftTypeRevenueChart = () => {
       
       const data = response.data;
 
-      const labels = data.map((entry) => entry.ID);
+      const labels = data.map((entry) => entry.Time);
       const temperatures = data.map((entry) => parseFloat(entry.Tempreature));
       const humidity = data.map((entry) => parseFloat(entry.Humidity));
 
