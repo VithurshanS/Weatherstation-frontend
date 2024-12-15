@@ -50,7 +50,7 @@ const AircraftTypeRevenueChart = () => {
       
       const data = response.data;
 
-      const labels = data.map((entry) => entry.Time);
+      const labels = data.map((entry) => entry.ID);
       const temperatures = data.map((entry) => parseFloat(entry.Tempreature));
       const humidity = data.map((entry) => parseFloat(entry.Humidity));
 
@@ -75,7 +75,7 @@ const AircraftTypeRevenueChart = () => {
 
   useEffect(() => {
     fetchWeatherData();
-    const interval = setInterval(fetchWeatherData, 100); // Update every 2 seconds
+    const interval = setInterval(fetchWeatherData, 1000); // Update every 2 seconds
 
     return () => clearInterval(interval);
   }, []);
