@@ -12,7 +12,7 @@ import {
 } from "chart.js";
 import 'chartjs-adapter-date-fns';
 
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Title);
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title);
 
 const AircraftTypeRevenueChart = () => {
   const [chartData, setChartData] = useState({
@@ -40,7 +40,7 @@ const AircraftTypeRevenueChart = () => {
   const fetchWeatherData = async () => {
     try {
       const response = await axios.get(
-        "  https://2fd9-2402-4000-2340-e919-75c4-2243-4fa1-58f2.ngrok-free.app/weatherdata",
+        "  https://weatherbackend-b9v6ybeo.b4a.run/weatherdata",
         {
           headers: {
             "ngrok-skip-browser-warning": "true",
@@ -75,10 +75,10 @@ const AircraftTypeRevenueChart = () => {
 
   useEffect(() => {
     fetchWeatherData();
-    const interval = setInterval(fetchWeatherData, 1000); // Update every 2 seconds
+    //const interval = setInterval(fetchWeatherData, 1000); // Update every 2 seconds
 
-    return () => clearInterval(interval);
-  }, []);
+    //return () => clearInterval(interval);
+});
 
   const options = {
     responsive: true,
@@ -92,7 +92,7 @@ const AircraftTypeRevenueChart = () => {
         ticks: {
           autoSkip: true,
           maxRotation: 45,
-          minRotation: 0,
+          minRotation: 45,
         },
       },
       y: {
