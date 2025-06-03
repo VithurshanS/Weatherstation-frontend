@@ -12,7 +12,7 @@ import {
 } from "chart.js";
 import 'chartjs-adapter-date-fns';
 
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title);
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Title);
 
 const AircraftTypeRevenueChart = () => {
   const [chartData, setChartData] = useState({
@@ -47,11 +47,13 @@ const AircraftTypeRevenueChart = () => {
           },
         }
       );
-      
+
       const data = response.data;
 
+      console.log("Fetched weather data:", data); // Debug log
+
       const labels = data.map((entry) => entry.Time);
-      const temperatures = data.map((entry) => parseFloat(entry.Tempreature));
+      const temperatures = data.map((entry) => parseFloat(entry.Temperature));
       const humidity = data.map((entry) => parseFloat(entry.Humidity));
 
       setChartData((prev) => ({
@@ -75,10 +77,7 @@ const AircraftTypeRevenueChart = () => {
 
   useEffect(() => {
     fetchWeatherData();
-    //const interval = setInterval(fetchWeatherData, 1000); // Update every 2 seconds
-
-    //return () => clearInterval(interval);
-});
+  }, []); // Run only once on mount
 
   const options = {
     responsive: true,
@@ -96,7 +95,6 @@ const AircraftTypeRevenueChart = () => {
         },
       },
       y: {
-
         title: {
           display: true,
           text: "Values",
@@ -113,9 +111,9 @@ const AircraftTypeRevenueChart = () => {
   };
 
   return (
-    <div   style={{ width: "100%", height: "80%" }}>
-      <h2 >Dynamic Temperature and Humidity Graph</h2>
-      <Line className="summa1" data={chartData} options={options} />
+    <div style={{ width: "100%", height: "80%" }}>
+      <h2>Dynamic Temperature and Humidity Graph</h2>
+      <Line data={chartData} options={options} />
     </div>
   );
 };
