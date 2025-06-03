@@ -40,7 +40,7 @@ const AircraftTypeRevenueChart = () => {
   const fetchWeatherData = async () => {
     try {
       const response = await axios.get(
-        "  http://140.245.234.252:3000/weatherdata",
+        "http://140.245.234.252:3000/weatherdata",
         {
           headers: {
             "ngrok-skip-browser-warning": "true",
